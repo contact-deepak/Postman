@@ -155,16 +155,16 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/departments/{{id}}",
+					"raw": "https://dev-api.futurx.in/api/departments/66ab4b8ba01ca7e75156f95e",
 					"host": [
-						"{{url}}"
+						"https"
 					],
 					"path": [
 						"departments",
-						"{{id}}"
+						"66ab4b8ba01ca7e75156f95e"
 					]
 				},
-				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://compapi.makvishan.com/api/departments/668cd280a24189ffa5ff678e' \\\r\n  -H 'accept: application/json'"
+				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://dev-api.futurx.in/api/departments/66ab4b8ba01ca7e75156f95e' \\\r\n  -H 'accept: application/json'"
 			},
 			"response": []
 		},

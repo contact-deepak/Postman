@@ -32,7 +32,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJYNzRBZXFJQTZKd05xWnJnX1pkNlZ3Yk9xOTBOSmFFeiIsInVzZXJJZCI6IjY2ZWJiMGQwZDg2MzU2YWEyNjI2NjQ0YSIsImlhdCI6MTcyODQ5ODUyMH0.1ezTJVEP_YnSgKaG9f9iDH8gs5TsV-SpZmPreOCiAR4"
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJ2QTh0VW1LVXBFMGNMVmRCZl90R2xWVHozbUxMOF96TSIsInVzZXJJZCI6IjY2ZWJiMGQwZDg2MzU2YWEyNjI2NjQ0YSIsImlhdCI6MTcyODUzNjU1MX0.W-NTdxNE5ZPH3bcXXnRQq3dYC0ynxiQi92rVxpGkW1c"
 					}
 				},
 				"method": "GET",
@@ -115,7 +115,7 @@
 						}
 					}
 				},
-				"url": "{{url}}/course-times"
+				"url": "https://{{url}}/api/course-times"
 			},
 			"response": []
 		},
@@ -371,7 +371,7 @@
 		},
 		{
 			"key": "url",
-			"value": "https://api.staging.futurx.in/api",
+			"value": "api.staging.futurx.in",
 			"type": "string"
 		},
 		{

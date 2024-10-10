@@ -371,12 +371,12 @@
 		},
 		{
 			"key": "url",
-			"value": "",
+			"value": "https://api.staging.futurx.in/api",
 			"type": "string"
 		},
 		{
 			"key": "token",
-			"value": "",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJ2QTh0VW1LVXBFMGNMVmRCZl90R2xWVHozbUxMOF96TSIsInVzZXJJZCI6IjY2ZWJiMGQwZDg2MzU2YWEyNjI2NjQ0YSIsImlhdCI6MTcyODUzNjU1MX0.W-NTdxNE5ZPH3bcXXnRQq3dYC0ynxiQi92rVxpGkW1c",
 			"type": "string"
 		}
 	]

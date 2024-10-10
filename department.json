@@ -1,14 +1,14 @@
 {
 	"info": {
-		"_postman_id": "465e681e-f493-476a-9d68-f3867b0c7944",
-		"name": "Department",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_postman_id": "b7b610ce-66fb-44a3-8333-0202e8a95737",
+		"name": "Course Time",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "36805930",
-		"_collection_link": "https://futurx.postman.co/workspace/FuturX~fc1c2785-17f2-422c-8b49-9a1839c7b4a0/collection/36805930-465e681e-f493-476a-9d68-f3867b0c7944?action=share&source=collection_link&creator=36805930"
+		"_collection_link": "https://futurx.postman.co/workspace/FuturX~fc1c2785-17f2-422c-8b49-9a1839c7b4a0/collection/36805930-b7b610ce-66fb-44a3-8333-0202e8a95737?action=share&source=collection_link&creator=36805930"
 	},
 	"item": [
 		{
-			"name": "All departments",
+			"name": "All course time",
 			"event": [
 				{
 					"listen": "test",
@@ -29,6 +29,12 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJYNzRBZXFJQTZKd05xWnJnX1pkNlZ3Yk9xOTBOSmFFeiIsInVzZXJJZCI6IjY2ZWJiMGQwZDg2MzU2YWEyNjI2NjQ0YSIsImlhdCI6MTcyODQ5ODUyMH0.1ezTJVEP_YnSgKaG9f9iDH8gs5TsV-SpZmPreOCiAR4"
+					}
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -37,16 +43,17 @@
 					}
 				],
 				"url": {
-					"raw": "https://dev-api.futurx.in/api/departments?limit=10",
+					"raw": "https://api.staging.futurx.in/api/course-times?limit=10",
 					"protocol": "https",
 					"host": [
-						"dev-api",
+						"api",
+						"staging",
 						"futurx",
 						"in"
 					],
 					"path": [
 						"api",
-						"departments"
+						"course-times"
 					],
 					"query": [
 						{
@@ -54,13 +61,12 @@
 							"value": "10"
 						}
 					]
-				},
-				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://compapi.makvishan.com/api/departments?limit=10' \\\r\n  -H 'accept: application/json'"
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Create a new department",
+			"name": "Create new course time",
 			"event": [
 				{
 					"listen": "test",
@@ -72,10 +78,9 @@
 							"var jsonData = pm.response.json();\r",
 							"pm.collectionVariables.set(\"id\", jsonData.data._id);   \r",
 							"pm.collectionVariables.set(\"name\", jsonData.data.name);\r",
-							"pm.collectionVariables.set(\"description\", jsonData.data.description);\r",
 							"\r",
-							"pm.test(\"Department added successfully\", function () {\r",
-							"    pm.expect(jsonData.message).to.eql(\"Department added successfully\");\r",
+							"pm.test(\"Course time added successfully\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Course time added successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -84,6 +89,12 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -97,32 +108,19 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"CSE\",\r\n  \"description\": \"Computer science\"\r\n}",
+					"raw": "{\r\n  \"name\": \"Morning\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "https://dev-api.futurx.in/api/departments",
-					"protocol": "https",
-					"host": [
-						"dev-api",
-						"futurx",
-						"in"
-					],
-					"path": [
-						"api",
-						"departments"
-					]
-				},
-				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://compapi.makvishan.com/api/departments' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"name\": \"Dept 1\",\r\n  \"description\": \"This is description \"\r\n}'"
+				"url": "{{url}}/course-times"
 			},
 			"response": []
 		},
 		{
-			"name": "Get department by id",
+			"name": "Get course time by id",
 			"event": [
 				{
 					"listen": "test",
@@ -132,12 +130,11 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Department Found\", function () {\r",
+							"pm.test(\"Course time Found\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.eql(\"Success\");\r",
 							"    pm.expect(jsonData.data._id).to.eql(pm.collectionVariables.get(\"id\"));\r",
 							"    pm.expect(jsonData.data.name).to.eql(pm.collectionVariables.get(\"name\"));\r",
-							"    pm.expect(jsonData.data.description).to.eql(pm.collectionVariables.get(\"description\"));\r",
 							"});\r",
 							""
 						],
@@ -147,6 +144,12 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -154,26 +157,12 @@
 						"value": "application/json"
 					}
 				],
-				"url": {
-					"raw": "https://dev-api.futurx.in/api/departments/{{id}}",
-					"protocol": "https",
-					"host": [
-						"dev-api",
-						"futurx",
-						"in"
-					],
-					"path": [
-						"api",
-						"departments",
-						"{{id}}"
-					]
-				},
-				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://compapi.makvishan.com/api/departments/668cd280a24189ffa5ff678e' \\\r\n  -H 'accept: application/json'"
+				"url": "{{url}}/course-times/{{id}}"
 			},
 			"response": []
 		},
 		{
-			"name": "Update a department by id",
+			"name": "Update a course time by id",
 			"event": [
 				{
 					"listen": "test",
@@ -184,10 +173,9 @@
 							"});\r",
 							"var jsonData = pm.response.json();   \r",
 							"pm.collectionVariables.set(\"name\", jsonData.data.name);\r",
-							"pm.collectionVariables.set(\"description\", jsonData.data.description);\r",
 							"\r",
-							"pm.test(\"Department updated successfully\", function () {\r",
-							"    pm.expect(jsonData.message).to.eq(\"Department updated successfully\");\r",
+							"pm.test(\"Course time updated successfully\", function () {\r",
+							"    pm.expect(jsonData.message).to.eq(\"Course time updated successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -196,6 +184,12 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
 				"method": "PUT",
 				"header": [
 					{
@@ -209,33 +203,19 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"CSE\",\r\n  \"description\": \"cse\"\r\n}",
+					"raw": "{\r\n  \"name\": \"Evening\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "https://dev-api.futurx.in/api/departments/{{id}}",
-					"protocol": "https",
-					"host": [
-						"dev-api",
-						"futurx",
-						"in"
-					],
-					"path": [
-						"api",
-						"departments",
-						"{{id}}"
-					]
-				},
-				"description": "Generated from cURL: curl -X 'PUT' \\\r\n  'https://compapi.makvishan.com/api/departments/668cd280a24189ffa5ff678e' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"name\": \"CSE\",\r\n  \"description\": \"This is description \"\r\n}'"
+				"url": "{{url}}/course-times/{{id}}"
 			},
 			"response": []
 		},
 		{
-			"name": "Get department by id After update",
+			"name": "Get course time by id After Update",
 			"event": [
 				{
 					"listen": "test",
@@ -245,12 +225,11 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Department Found\", function () {\r",
+							"pm.test(\"Course time Found\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.eql(\"Success\");\r",
 							"    pm.expect(jsonData.data._id).to.eql(pm.collectionVariables.get(\"id\"));\r",
 							"    pm.expect(jsonData.data.name).to.eql(pm.collectionVariables.get(\"name\"));\r",
-							"    pm.expect(jsonData.data.description).to.eql(pm.collectionVariables.get(\"description\"));\r",
 							"});\r",
 							""
 						],
@@ -260,6 +239,12 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -267,26 +252,12 @@
 						"value": "application/json"
 					}
 				],
-				"url": {
-					"raw": "https://dev-api.futurx.in/api/departments/{{id}}",
-					"protocol": "https",
-					"host": [
-						"dev-api",
-						"futurx",
-						"in"
-					],
-					"path": [
-						"api",
-						"departments",
-						"{{id}}"
-					]
-				},
-				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://compapi.makvishan.com/api/departments/668cd280a24189ffa5ff678e' \\\r\n  -H 'accept: application/json'"
+				"url": "{{url}}/course-times/{{id}}"
 			},
 			"response": []
 		},
 		{
-			"name": "Delete department by id",
+			"name": "Delete a course time",
 			"event": [
 				{
 					"listen": "test",
@@ -296,9 +267,9 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Department deleted successfully \", function () {\r",
+							"pm.test(\"Course time deleted successfully \", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.message).to.eql(\"Department deleted successfullly \");\r",
+							"    pm.expect(jsonData.message).to.eql(\"Course time deleted successfully \");\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -307,6 +278,12 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
 				"method": "DELETE",
 				"header": [
 					{
@@ -314,26 +291,12 @@
 						"value": "*/*"
 					}
 				],
-				"url": {
-					"raw": "https://dev-api.futurx.in/api/departments/{{id}}",
-					"protocol": "https",
-					"host": [
-						"dev-api",
-						"futurx",
-						"in"
-					],
-					"path": [
-						"api",
-						"departments",
-						"{{id}}"
-					]
-				},
-				"description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://compapi.makvishan.com/api/departments/668cd280a24189ffa5ff678e' \\\r\n  -H 'accept: */*'"
+				"url": "{{url}}/course-times/{{id}}"
 			},
 			"response": []
 		},
 		{
-			"name": "Get department by id After Deletion",
+			"name": "Get course time by id After Deletion",
 			"event": [
 				{
 					"listen": "test",
@@ -343,14 +306,12 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Department deleted\", function () {\r",
+							"pm.test(\"Course Time deleted\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.eql(\"Success\");\r",
 							"    pm.expect(jsonData.data._id).to.eql(pm.collectionVariables.get(\"id\"));\r",
 							"    pm.expect(jsonData.data.isActive).to.eql(false);  \r",
 							"});\r",
-							"\r",
-							"\r",
 							""
 						],
 						"type": "text/javascript",
@@ -359,6 +320,12 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -366,21 +333,7 @@
 						"value": "application/json"
 					}
 				],
-				"url": {
-					"raw": "https://dev-api.futurx.in/api/departments/{{id}}",
-					"protocol": "https",
-					"host": [
-						"dev-api",
-						"futurx",
-						"in"
-					],
-					"path": [
-						"api",
-						"departments",
-						"{{id}}"
-					]
-				},
-				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://compapi.makvishan.com/api/departments/668cd280a24189ffa5ff678e' \\\r\n  -H 'accept: application/json'"
+				"url": "{{url}}/course-times/{{id}}"
 			},
 			"response": []
 		}
@@ -417,11 +370,12 @@
 			"value": ""
 		},
 		{
-			"key": "description",
-			"value": ""
+			"key": "url",
+			"value": "",
+			"type": "string"
 		},
 		{
-			"key": "url",
+			"key": "token",
 			"value": "",
 			"type": "string"
 		}
